@@ -8,6 +8,7 @@ var qs = require('querystring');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
 app.get('*', function(req, res, next) {
@@ -26,8 +27,9 @@ app.get('/', (req, res) => {
   var html = template.HTML(
     title,
     list,
-    `<h2>${title}</h2>${description}`,
-    `<a href="/create">create</a>`
+    `<h2>${title}</h2>${description},
+    <img src='/images/jimin.jpeg' style='width:300px; display:block'/>
+    <a href="/create">create</a>`
   );
   res.send(html);
 });
